@@ -1,6 +1,6 @@
-﻿namespace Guide.Tooltip.Core;
-using Godot;
+﻿using Godot;
 using System;
+namespace Tooltip;
 
 [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property)]
 [Tool]

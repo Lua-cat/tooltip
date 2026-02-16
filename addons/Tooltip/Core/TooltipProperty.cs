@@ -1,6 +1,7 @@
 ﻿using Godot;
+using Godot.Collections;
 
-namespace Guide.Tooltip.Core;
+namespace Tooltip;
 [Tool]
 public partial class TooltipProperty() : EditorProperty
 {
@@ -13,12 +14,25 @@ public partial class TooltipProperty() : EditorProperty
     {
         Tooltip = tooltip;
         attr = variant;
+        Name="tooltip";
+    }
+
+    public override void _Ready()
+    {
+        if (Engine.IsEditorHint())
+        {
+
+        }
     }
     
     
 
     public override void _Draw()
     {
+        if (!Engine.IsEditorHint())
+        {
+            return;
+        }
         if (!(GetChildCount() > 2))
         {
             return;
@@ -36,10 +50,29 @@ public partial class TooltipProperty() : EditorProperty
         }
         RichTextLabel tooltipDescription = inspectortooltiphelper.GetChild<RichTextLabel>(1, true);
         tooltipDescription.Text = Tooltip;
+        GetParent().GetChild(1, true).PrintTree();
+        
+        //GD.Print(EditorInterface.Singleton.GetInspector().GetChild(0).GetChild(2).GetChild(1).GetChild(0).GetChild(2,true).GetChild(2,true).GetChild<RichTextLabel>(1,true).Text);
     }
 
     public void Parent()
     {
-        GD.Print("PARENT: "+GetParent().GetParent());
+        /*
+        GD.Print("PARENT: "+GetParent());
+        var root = GetParent().GetChild(1, true);
+        if (!IsInstanceValid(root))
+        {
+            return;
+        }
+
+        if (!IsInstanceValid(root.GetChild(2)))
+        {
+            return;
+        }
+        root.GetChild(2).Reparent(this);
+        */
+        GD.Print(GetPath());
+        GD.Print(EditorInterface.Singleton.GetInspector().GetChild(0).GetChild(2).Name);
+
     }
 }

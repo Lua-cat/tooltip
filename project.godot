@@ -10,13 +10,17 @@ config_version=5
 
 [application]
 
-config/name="Tooltip"
-config/features=PackedStringArray("4.6", "Forward Plus")
+config/name="tooltip"
+config/features=PackedStringArray("4.6", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
-project/assembly_name="Tooltip"
+project/assembly_name="tooltip"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/Tooltip/plugin.cfg")
 
 [physics]
 

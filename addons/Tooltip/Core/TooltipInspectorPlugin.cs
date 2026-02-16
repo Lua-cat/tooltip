@@ -1,15 +1,14 @@
-﻿
-namespace Guide.Tooltip.Core;
-
-using Godot;
+﻿using Godot;
 using System;
 using System.Reflection;
+
+namespace Tooltip;
+
 [Tool]
 public partial class TooltipInspectorPlugin : EditorInspectorPlugin
 {
     public override bool _CanHandle(GodotObject obj)
     {
-        // Only handle valid objects
         return IsInstanceValid(obj);
     }
     
@@ -88,7 +87,8 @@ public partial class TooltipInspectorPlugin : EditorInspectorPlugin
         );
         */;
         EditorInterface.Singleton.GetInspector().Visible = true;
-        GD.Print("INTER:"+EditorInterface.Singleton.GetInspector().GetChild<VBoxContainer>(0));
+        GD.Print("TREE: ");
+        GD.Print(" :END");
         TooltipProperty property= new TooltipProperty();
         property.SetTooltip(attr.TooltipText,obj.Get(path));
         AddPropertyEditor(path, property);
